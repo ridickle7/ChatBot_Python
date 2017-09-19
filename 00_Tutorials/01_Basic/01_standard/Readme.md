@@ -1,3 +1,4 @@
 # 1-1. Standard
 
-TensorFlow는 
+### 텐서플로우(TensorFlow)
+기계 학습과 딥러닝을 위해 구글에서 만든 오픈소스 라이브러리
