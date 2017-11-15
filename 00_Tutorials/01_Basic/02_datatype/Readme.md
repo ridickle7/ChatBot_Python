@@ -27,10 +27,11 @@ d = a * b + c
 # '52' 가 아닌 'Tensor("add:0", shape=(1,), dtype=float32)' 가 나온다
 print(d)
 </code></pre>  
-도데체 이 녀석의 정체는 무엇일까? 답은 아래와 같다.
+도데체 이 녀석의 정체는 무엇일까? 답은 아래와 같다.  
 #### 2. Graph & Session  
 위의 d 값은 계산 값이 아닌 a * b + c 연산 식 (그래프) 을 정의 하는 것이다.
 ![Image](http://cfile8.uf.tistory.com/image/221D7F45584AB42A1F0F4F)  
+  
 그럼 본론으로 돌아와 계산 값을 뽑아내려면 연산식에 a, b, c 값을 각각 넣어야하는데 이는 세션을 생성하여 그래프를 실행해야 한다.
 코드로 설명하면 다음과 같다.
 <pre><code> # 연산 값 뽑아내기
@@ -48,9 +49,9 @@ d = a*b+c
 sess = tf.Session()     # 세션 생성
 result = sess.run(d)    # run 을 통해 해당 연산(파라미터) 실행
 print(result)           # 값 확인
-</code></pre>
+</code></pre>  
 #### 3. PlaceHolder  
-입력 값으로 여러 개의 데이터를 그래프에 넣을 경우 해당 학습용 데이터를 담는 그릇을 **placeHolder** 이라 한다.  
+입력 값으로 여러 개의 데이터를 그래프에 넣을 때, 해당 데이터를 담는 그릇을 **placeHolder** 이라 한다. 
 정의 및 사용 예제는 다음과 같다.
 <pre><code># dtype : 플레이스홀더에 저장되는 데이타형 (ex> tf.float32)
 # shape : 행렬의 차원(ex> shape=[3,3] -> 3x3 행렬을 저장)
@@ -66,7 +67,7 @@ sess = tf.Session()
 result = sess.run(y, **feed_dict={x:input_data}**) # x에 학습용 데이타를 넣어주는 과정 (피딩(feeding))
 
 print(result)
-</code></pre>
+</code></pre>  
 #### 4. Variable
 학습용 가설을 만들었을 때 (ex> y = W * x + b)  
 x가 입력데이터였다면 W와 b는 학습을 통해 구해야 하는 값이 된다. (이를 **변수** 라 한다.)  
